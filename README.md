@@ -57,7 +57,7 @@ cropx sign
 Format files are kept as simple as possible with minimal commands:
 
 * `base <size>` Defines the width and height of the smallest tile. The first line must contain this command.
-* `select <x> <y> <width> <height>` Selects the starting tile of the next crop operation. Arguments are relative to the `base` tile size, which avoids forcing the user to think in terms of tiny pixels.
+* `select <x> <y> <width> <height>` Selects the starting tile of the next crop operation. Arguments are relative to the `base` tile size. Coordinates `x = 1` and `y = 1` correspond to the top-left of the tileset.
 * `cropx <tile_name> ...` Crops sequential tiles horizontally into individual tile images. The amount of crops is determined by how many `tile_name` arguments are passed. These tile names are included in the resulting image paths.
 * `cropy <tile_name> ...` Crops sequential tiles vertically instead of horizontally.
 

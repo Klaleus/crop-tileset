@@ -17,9 +17,9 @@
 -- 
 --     3. This notice may not be removed or altered from any source distribution.
 
--- https://github.com/klaleus/tool-crop-tileset
+-- https://github.com/klaleus/crop-tileset
 
--- luajit crop_tileset.lua example/tileset.png example/tileset.fmt
+-- luajit crop_tileset.lua <image_path> <format_path> [<destination_path>]
 
 --------------------------------------------------------------------------------
 
