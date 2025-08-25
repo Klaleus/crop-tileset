@@ -1,0 +1,13 @@
+base 8
+
+select 1 1 2 2
+cropx tree_large_red tree_large_green tree_large_blue
+
+select 1 3 1 2
+cropx tree_tall_red tree_tall_green tree_tall_blue
+
+select 4 3 1 1
+cropy flower_small_red flower_small_blue
+
+select 5 3 1 1
+cropx sign
