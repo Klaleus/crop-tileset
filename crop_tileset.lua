@@ -50,7 +50,7 @@ format:close()
 
 local tile_count = 0
 
-local tile_scaling_factor = tonumber(lines[1]:match("base (%d+)"))
+local tile_scaling_factor = 8
 
 local tile_x = 1
 local tile_y = 1
@@ -84,7 +84,10 @@ for i = 2, #lines do
     local line = lines[i]
     local cmd, cmd_args = line:match("(%l+) (.+)")
 
-    if cmd == "select" then
+    if cmd == "base" then
+        tile_scaling_factor = tonumber(cmd_args:match("%d+"))
+
+    elseif cmd == "select" then
         local tile_x_str, tile_y_str, tile_width_str, tile_height_str = cmd_args:match("(%d+) (%d+) (%d+) (%d+)")
         tile_x, tile_y, tile_width, tile_height = tonumber(tile_x_str), tonumber(tile_y_str), tonumber(tile_width_str), tonumber(tile_height_str)
 

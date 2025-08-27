@@ -60,7 +60,7 @@ cropx sign
 
 Format files are kept as simple as possible with minimal commands:
 
-* `base <size>` Defines the width and height of the smallest tile. The first line must contain this command.
+* `base <size>` Defines the width and height of subsequent `select` operations. Default is `base 8`.
 * `select <x> <y> <width> <height>` Selects the starting tile of the next crop operation. Arguments are relative to the `base` tile size. Coordinates `x = 1` and `y = 1` correspond to the top-left of the tileset.
 * `cropx <tile_name> ...` Crops sequential tiles horizontally. The amount of crops is determined by how many `tile_name` arguments are passed.
 * `cropy <tile_name> ...` Crops sequential tiles vertically. The amount of crops is determined by how many `tile_name` arguments are passed.
@@ -86,7 +86,7 @@ Successfully cropped 9 tiles.
 ```
 
 ```
--- Cropped images under the current working directory.
+$ ls *.png
 
 ./tree_large_red.png
 ./tree_large_green.png
