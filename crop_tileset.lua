@@ -29,10 +29,12 @@ elseif arg[3]:sub(-1) ~= "/" then
     arg[3] = arg[3] .. "/"
 end
 
+-- Example: luajit crop_tileset.lua example/tileset.png example/tileset.fmt
 -- arg[1] -> "example/tileset.png"
 -- arg[2] -> "example/tileset.fmt"
 -- arg[3] -> "./"
 
+-- https://github.com/leafo/magick
 local magick = require("magick")
 
 local format, err = io.open(arg[2], "r")
@@ -50,8 +52,8 @@ local tile_count = 0
 
 local tile_scaling_factor = tonumber(lines[1]:match("base (%d+)"))
 
-local tile_x = 0
-local tile_y = 0
+local tile_x = 1
+local tile_y = 1
 local tile_width = 1
 local tile_height = 1
 
@@ -92,6 +94,9 @@ for i = 2, #lines do
     elseif cmd == "cropy" then
         crop("y", cmd_args)
     end
+
+    -- Lines that do not start with any of the above commands are ignored.
+    -- This is useful for comments and whitespace.
 end
 
 print("Successfully cropped " .. tile_count .. " tiles.")
