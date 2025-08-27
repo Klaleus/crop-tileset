@@ -80,7 +80,7 @@ local function crop(axis, cmd_args)
     end
 end
 
-for i = 2, #lines do
+for i = 1, #lines do
     local line = lines[i]
     local cmd, cmd_args = line:match("(%l+) (.+)")
 
@@ -96,6 +96,9 @@ for i = 2, #lines do
 
     elseif cmd == "cropy" then
         crop("y", cmd_args)
+
+    elseif cmd == "crop" then
+        print("Command `crop` does not exist. Did you mean `cropx` or `cropy`?")
     end
 
     -- Lines that do not start with any of the above commands are ignored.
