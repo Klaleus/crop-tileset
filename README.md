@@ -6,11 +6,11 @@ Please click the ☆ button on GitHub if this repository is useful. Thank you!
 
 ## Installation
 
-Install LuaJIT. Magick, another dependency, requires LuaJIT over interpretted Lua:  
-https://luajit.org/install.html
+Install libvips, a C library that performs image-related operations:
+https://github.com/libvips/libvips
 
-Install Magick via LuaRocks. It offers Lua bindings to a popular C library called ImageMagick, which performs image-related operations:  
-https://github.com/leafo/magick
+Install lua-vips, a Lua binding to libvips:
+https://github.com/libvips/lua-vips
 
 Finally, download or clone this repository.
 

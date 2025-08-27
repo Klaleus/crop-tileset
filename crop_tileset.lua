@@ -34,8 +34,11 @@ end
 -- arg[2] -> "example/tileset.fmt"
 -- arg[3] -> "./"
 
--- https://github.com/leafo/magick
-local magick = require("magick")
+-- https://github.com/libvips/lua-vips
+-- lua-vips seems to throw its own errors, so no need to assert against it.
+local vips = require("vips")
+
+local tileset = vips.Image.new_from_file(arg[1])
 
 local format, err = io.open(arg[2], "r")
 assert(format, err)
@@ -69,11 +72,10 @@ local function crop(axis, cmd_args)
         local pixel_width = tile_width * tile_scaling_factor
         local pixel_height = tile_height * tile_scaling_factor
 
-        local thumb_str = pixel_width .. "x" .. pixel_height .. "+" .. pixel_x .. "+" .. pixel_y
         print("Cropping " .. tile_name .. " (x = " .. pixel_x .. ", y = " .. pixel_y .. ", width = " .. pixel_width .. ", height = " .. pixel_height .. ")...")
         local file_path = arg[3] .. tile_name .. ".png"
-        local success = magick.thumb(arg[1], thumb_str, file_path)
-        assert(success, "Failed to crop to '" .. file_path .. "'")
+        local tile = tileset:crop(pixel_x, pixel_y, pixel_width, pixel_height)
+        tile:write_to_file(file_path)
 
         current_tile_count = current_tile_count + 1
         tile_count = tile_count + 1
