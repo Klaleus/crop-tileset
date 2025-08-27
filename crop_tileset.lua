@@ -62,15 +62,17 @@ local tile_height = 1
 
 local function crop(axis, cmd_args)
     local current_tile_count = 0
+
+    local pixel_x_start = (tile_x - 1) * tile_scaling_factor
+    local pixel_y_start = (tile_y - 1) * tile_scaling_factor
+    local pixel_width = tile_width * tile_scaling_factor
+    local pixel_height = tile_height * tile_scaling_factor
+
     for tile_name in cmd_args:gmatch("%S+") do
-        local pixel_x_start = (tile_x - 1) * tile_scaling_factor
-        local pixel_y_start = (tile_y - 1) * tile_scaling_factor
         local pixel_x_iteration = axis == "x" and current_tile_count * tile_width * tile_scaling_factor or 0
         local pixel_y_iteration = axis == "y" and current_tile_count * tile_height * tile_scaling_factor or 0
         local pixel_x = pixel_x_start + pixel_x_iteration
         local pixel_y = pixel_y_start + pixel_y_iteration
-        local pixel_width = tile_width * tile_scaling_factor
-        local pixel_height = tile_height * tile_scaling_factor
 
         print("Cropping " .. tile_name .. " (x = " .. pixel_x .. ", y = " .. pixel_y .. ", width = " .. pixel_width .. ", height = " .. pixel_height .. ")...")
         local file_path = arg[3] .. tile_name .. ".png"
