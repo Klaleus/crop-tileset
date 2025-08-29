@@ -19,20 +19,18 @@
 
 -- https://github.com/klaleus/script-crop-tileset
 
--- luajit crop_tileset.lua <image_path> <format_path> [<destination_path>]
+-- luajit crop_tileset.lua <source> <destination> <format>
 
 --------------------------------------------------------------------------------
 
-if not arg[3] then
-    arg[3] = "./"
-elseif arg[3]:sub(-1) ~= "/" then
-    arg[3] = arg[3] .. "/"
+if arg[2]:sub(-1) ~= "/" then
+    arg[2] = arg[2] .. "/"
 end
 
--- Example: luajit crop_tileset.lua example/tileset.png example/tileset.fmt
+-- Example: luajit crop_tileset.lua example/tileset.png ./ example/tileset.fmt
 -- arg[1] -> "example/tileset.png"
--- arg[2] -> "example/tileset.fmt"
--- arg[3] -> "./"
+-- arg[2] -> "./"
+-- arg[3] -> "example/tileset.fmt"
 
 -- https://github.com/libvips/lua-vips
 -- lua-vips seems to throw its own errors, so no need to assert against it.
@@ -40,7 +38,7 @@ local vips = require("vips")
 
 local tileset = vips.Image.new_from_file(arg[1])
 
-local format, err = io.open(arg[2], "r")
+local format, err = io.open(arg[3], "r")
 assert(format, err)
 
 local lines = {}
@@ -75,7 +73,7 @@ local function crop(axis, cmd_args)
         local pixel_y = pixel_y_start + pixel_y_iteration
 
         print("Cropping " .. tile_name .. " (x = " .. pixel_x .. ", y = " .. pixel_y .. ", width = " .. pixel_width .. ", height = " .. pixel_height .. ")...")
-        local file_path = arg[3] .. tile_name .. ".png"
+        local file_path = arg[2] .. tile_name .. ".png"
         local tile = tileset:crop(pixel_x, pixel_y, pixel_width, pixel_height)
         tile:write_to_file(file_path)
 
