@@ -21,8 +21,8 @@ $ luajit crop_tileset.lua <source> <destination> <format>
 ```
 
 1. `source` Relative path to the tileset image.
-3. `destination` Relative path to the destination directory where the cropped tiles are placed.
-2. `format` Relative path to the format file, which defines how to crop the tileset.
+2. `destination` Relative path to the destination directory where the cropped tiles are placed.
+3. `format` Relative path to the format file, which defines how to crop the tileset.
 
 Only PNG images are supported.
 
@@ -34,9 +34,8 @@ The example project can be tested with the following command:
 $ luajit crop_tileset.lua example/tileset.png ./ example/tileset.fmt
 ```
 
-* The tileset `example/tileset.png` is 48 x 32 pixels, where the smallest tile is 8 x 8 pixels. It contains three large trees, three tall trees, two flowers, and one sign.
+* The tileset `example/tileset.png` is 48 x 32 pixels, where the smallest tile is 8 x 8 pixels.
 * The resulting images are placed into `./` the current working directory.
-* The format file `example/tileset.fmt` defines how the script should crop each tile.
 
 <img width="240" height="160" alt="tileset.png" src="https://github.com/user-attachments/assets/545097a9-36ad-4c00-806e-3be993ba7b15" />
 
@@ -59,7 +58,7 @@ cropx sign
 Format files are kept as simple as possible with minimal commands:
 
 * `base <size>` Defines the width and height of subsequent `select` operations. Default is `base 8`.
-* `select <x> <y> <width> <height>` Selects the starting tile of the next crop operation. Arguments are relative to the `base` tile size. Coordinates `x = 1` and `y = 1` correspond to the top-left of the tileset.
+* `select <x> <y> <width> <height>` Selects the starting tileset position of the next crop operation. Arguments are relative to the `base` tile size. Coordinates `x = 1` and `y = 1` correspond to the top-left of the tileset.
 * `cropx <tile_name> ...` Crops sequential tiles horizontally. The amount of crops is determined by how many `tile_name` arguments are passed.
 * `cropy <tile_name> ...` Crops sequential tiles vertically. The amount of crops is determined by how many `tile_name` arguments are passed.
 
