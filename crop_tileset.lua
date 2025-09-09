@@ -17,7 +17,7 @@
 -- 
 --     3. This notice may not be removed or altered from any source distribution.
 
--- https://github.com/klaleus/script-crop-tileset
+-- https://github.com/klaleus/crop-tileset
 
 -- luajit crop_tileset.lua <source> <destination> <format>
 
