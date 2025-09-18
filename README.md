@@ -34,8 +34,7 @@ The example project can be tested with the following command:
 $ luajit crop_tileset.lua example/tileset.png ./ example/tileset.fmt
 ```
 
-* The tileset `example/tileset.png` is 48 x 32 pixels, where the smallest tile is 8 x 8 pixels.
-* The resulting images are placed into `./` the current working directory.
+Tiles are cropped from `example/tileset.png`, saved into `./`, and the format file is located at `example/tileset.fmt`.
 
 <img width="240" height="160" alt="tileset.png" src="https://github.com/user-attachments/assets/545097a9-36ad-4c00-806e-3be993ba7b15" />
 
