@@ -51,7 +51,12 @@ format:close()
 
 local tile_count = 0
 
-local tile_scaling_factor = 8
+local tile_size_x = 8
+local tile_size_y = 8
+local tile_padding_x = 0
+local tile_padding_y = 0
+local tileset_margin_x = 0
+local tileset_margin_y = 0
 
 local tile_x = 1
 local tile_y = 1
@@ -61,14 +66,14 @@ local tile_height = 1
 local function crop(axis, cmd_args)
     local current_tile_count = 0
 
-    local pixel_x_start = (tile_x - 1) * tile_scaling_factor
-    local pixel_y_start = (tile_y - 1) * tile_scaling_factor
-    local pixel_width = tile_width * tile_scaling_factor
-    local pixel_height = tile_height * tile_scaling_factor
+    local pixel_x_start = tileset_margin_x + (tile_x - 1) * tile_size_x + (tile_x - 1) * tile_padding_x
+    local pixel_y_start = tileset_margin_y + (tile_y - 1) * tile_size_y + (tile_y - 1) * tile_padding_y
+    local pixel_width = tile_width * tile_size_x
+    local pixel_height = tile_height * tile_size_y
 
     for tile_name in cmd_args:gmatch("%S+") do
-        local pixel_x_iteration = axis == "x" and current_tile_count * tile_width * tile_scaling_factor or 0
-        local pixel_y_iteration = axis == "y" and current_tile_count * tile_height * tile_scaling_factor or 0
+        local pixel_x_iteration = axis == "x" and current_tile_count * tile_width * tile_size_x + current_tile_count * tile_padding_x or 0
+        local pixel_y_iteration = axis == "y" and current_tile_count * tile_height * tile_size_y + current_tile_count * tile_padding_y or 0
         local pixel_x = pixel_x_start + pixel_x_iteration
         local pixel_y = pixel_y_start + pixel_y_iteration
 
@@ -86,8 +91,32 @@ for i = 1, #lines do
     local line = lines[i]
     local cmd, cmd_args = line:match("(%l+) (.+)")
 
-    if cmd == "base" then
-        tile_scaling_factor = tonumber(cmd_args:match("%d+"))
+    if cmd == "sizex" then
+        tile_size_x = tonumber(cmd_args:match("%d+"))
+
+    elseif cmd == "sizey" then
+        tile_size_y = tonumber(cmd_args:match("%d+"))
+
+    elseif cmd == "size" then
+        print("Command `size` does not exist. Did you mean `sizex` or `sizey`?")
+
+    elseif cmd == "paddingx" then
+        tile_padding_x = tonumber(cmd_args:match("%d+"))
+
+    elseif cmd == "paddingy" then
+        tile_padding_y = tonumber(cmd_args:match("%d+"))
+
+    elseif cmd == "padding" then
+        print("Command `padding` does not exist. Did you mean `paddingx` or `paddingy`?")
+
+    elseif cmd == "marginx" then
+        tileset_margin_x = tonumber(cmd_args:match("%d+"))
+
+    elseif cmd == "marginy" then
+        tileset_margin_y = tonumber(cmd_args:match("%d+"))
+
+    elseif cmd == "margin" then
+        print("Command `margin` does not exist. Did you mean `marginx` or `marginy`?")
 
     elseif cmd == "select" then
         local tile_x_str, tile_y_str, tile_width_str, tile_height_str = cmd_args:match("(%d+) (%d+) (%d+) (%d+)")

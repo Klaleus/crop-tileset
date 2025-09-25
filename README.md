@@ -39,7 +39,14 @@ Tiles are cropped from `example/tileset.png`, saved into `./`, and the format fi
 <img width="240" height="160" alt="tileset.png" src="https://github.com/user-attachments/assets/545097a9-36ad-4c00-806e-3be993ba7b15" />
 
 ```
-base 8
+sizex 8
+sizey 8
+
+paddingx 0
+paddingy 0
+
+marginx 0
+marginy 0
 
 select 1 1 2 2
 cropx tree_large_red tree_large_green tree_large_blue
@@ -56,10 +63,15 @@ cropx sign
 
 Format files are kept as simple as possible with minimal commands:
 
-* `base <size>` Defines the width and height of subsequent `select` operations. Default is `base 8`.
+* `sizex <x>` Defines the width of subsequent `select` operations. Default is `sizex 8`.
+* `sizey <y>` Defines the height of subsequent `select` operations. Default is `sizey 8`.
+* `paddingx <x>` Defines the padding width between each tile. Default is `paddingx 0`.
+* `paddingy <y>` Defines the padding height between each tile. Default is `paddingy 0`.
+* `marginx <x>` Defines the margin width of the source tileset. Default is `marginx 0`.
+* `marginy <y>` Defines the margin height of the source tileset. Default is `marginy 0`.
 * `select <x> <y> <width> <height>` Selects the starting tileset position of the next crop operation. Arguments are relative to the `base` tile size. Coordinates `x = 1` and `y = 1` correspond to the top-left of the tileset.
-* `cropx <tile_name> ...` Crops sequential tiles horizontally. The amount of crops is determined by how many `tile_name` arguments are passed.
-* `cropy <tile_name> ...` Crops sequential tiles vertically. The amount of crops is determined by how many `tile_name` arguments are passed.
+* `cropx <tile_name> ...` Crops sequential tiles horizontally.
+* `cropy <tile_name> ...` Crops sequential tiles vertically.
 
 Faulty arguments to these commands are not protected against and will result in undefined behavior. Lines that do not start with one of the above commands are ignored.
 

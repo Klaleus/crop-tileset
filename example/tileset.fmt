@@ -1,4 +1,11 @@
-base 8
+sizex 8
+sizey 8
+
+paddingx 0
+paddingy 0
+
+marginx 0
+marginy 0
 
 select 1 1 2 2
 cropx tree_large_red tree_large_green tree_large_blue
