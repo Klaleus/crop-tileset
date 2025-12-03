@@ -2,8 +2,6 @@
 
 Lua script that crops a tileset into individual tiles.
 
-Please click the ☆ button on GitHub if this repository is useful. Thank you!
-
 ## Installation
 
 Install libvips, a C library that performs image-related operations:  
@@ -28,13 +26,9 @@ Only PNG images are supported.
 
 ## Example
 
-The example project can be tested with the following command:
-
 ```
 $ luajit crop_tileset.lua example/tileset.png ./ example/tileset.fmt
 ```
-
-Tiles are cropped from `example/tileset.png`, saved into `./`, and the format file is located at `example/tileset.fmt`.
 
 <img width="240" height="160" alt="tileset.png" src="https://github.com/user-attachments/assets/545097a9-36ad-4c00-806e-3be993ba7b15" />
 
