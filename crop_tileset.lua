@@ -25,17 +25,16 @@
 
 --------------------------------------------------------------------------------
 
-if arg[2]:sub(-1) ~= "/" then
-    arg[2] = arg[2] .. "/"
-end
-
 -- Example: luajit crop_tileset.lua example/tileset.png ./ example/tileset.fmt
 -- arg[1] -> "example/tileset.png"
 -- arg[2] -> "./"
 -- arg[3] -> "example/tileset.fmt"
 
+if arg[2]:sub(-1) ~= "/" then
+    arg[2] = arg[2] .. "/"
+end
+
 -- https://github.com/libvips/lua-vips
--- lua-vips seems to throw its own errors, so no need to assert against it.
 local vips = require("vips")
 
 local tileset = vips.Image.new_from_file(arg[1])
@@ -44,9 +43,9 @@ local format, err = io.open(arg[3], "r")
 assert(format, err)
 
 local lines = {}
-
 for line in format:lines() do
-    lines[#lines + 1] = line
+    local line_index = #lines + 1
+    lines[line_index] = line
 end
 
 format:close()
@@ -133,9 +132,6 @@ for i = 1, #lines do
     elseif cmd == "crop" then
         print("Command `crop` does not exist. Did you mean `cropx` or `cropy`?")
     end
-
-    -- Lines that do not start with any of the above commands are ignored.
-    -- This is useful for comments and whitespace.
 end
 
-print("Successfully cropped " .. tile_count .. " tiles.")
+print("Successfully cropped " .. tile_count .. " tiles")
