@@ -33,6 +33,8 @@ $ luajit crop_tileset.lua example/tileset.png ./ example/tileset.fmt
 <img width="240" height="160" alt="tileset.png" src="https://github.com/user-attachments/assets/545097a9-36ad-4c00-806e-3be993ba7b15" />
 
 ```
+-- example/tileset.fmt
+
 sizex 8
 sizey 8
 

@@ -30,14 +30,15 @@
 -- arg[2] -> "./"
 -- arg[3] -> "example/tileset.fmt"
 
+assert(#arg == 3, "You must specify three arguments: #arg == " .. #arg)
+assert(arg[1]:sub(-4) == ".png", "Your source image must have a .png file extension: " .. arg[1])
+
 if arg[2]:sub(-1) ~= "/" then
     arg[2] = arg[2] .. "/"
 end
 
 -- https://github.com/libvips/lua-vips
 local vips = require("vips")
-
-local tileset = vips.Image.new_from_file(arg[1])
 
 local format, err = io.open(arg[3], "r")
 assert(format, err)
@@ -49,6 +50,8 @@ for line in format:lines() do
 end
 
 format:close()
+
+local tileset = vips.Image.new_from_file(arg[1])
 
 local tile_count = 0
 
