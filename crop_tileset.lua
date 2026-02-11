@@ -19,7 +19,7 @@
 
 --------------------------------------------------------------------------------
 
--- GitHub: https://github.com/klaleus/crop-tileset
+-- GitHub: https://github.com/klaleus/lua-crop-tileset
 
 -- Usage: luajit crop_tileset.lua <source> <destination> <format>
 
@@ -81,7 +81,7 @@ local function crop(axis, cmd_args)
         local pixel_x = pixel_x_start + pixel_x_iteration
         local pixel_y = pixel_y_start + pixel_y_iteration
 
-        print("Cropping " .. tile_name .. " (x = " .. pixel_x .. ", y = " .. pixel_y .. ", width = " .. pixel_width .. ", height = " .. pixel_height .. ")...")
+        print("Cropping " .. tile_name .. " (x = " .. pixel_x .. ", y = " .. pixel_y .. ", width = " .. pixel_width .. ", height = " .. pixel_height .. ")")
         local file_path = arg[2] .. tile_name .. ".png"
         local tile = tileset:crop(pixel_x, pixel_y, pixel_width, pixel_height)
         tile:write_to_file(file_path)

@@ -30,11 +30,13 @@ Only PNG images are supported.
 $ luajit crop_tileset.lua example/tileset.png ./ example/tileset.fmt
 ```
 
+The following tileset *example/tileset.png* will be cropped into its constituent tiles:
+
 <img width="240" height="160" alt="tileset.png" src="https://github.com/user-attachments/assets/545097a9-36ad-4c00-806e-3be993ba7b15" />
 
-```
--- example/tileset.fmt
+The *example/tileset.fmt* format file will be used to achieve this result:
 
+```
 sizex 8
 sizey 8
 
@@ -76,17 +78,17 @@ Executing the above example would result in the following output:
 ```
 $ luajit crop_tileset.lua example/tileset.png ./ example/tileset.fmt
 
-Cropping tree_large_red (x = 0, y = 0, width = 16, height = 16)...
-Cropping tree_large_green (x = 16, y = 0, width = 16, height = 16)...
-Cropping tree_large_blue (x = 32, y = 0, width = 16, height = 16)...
-Cropping tree_tall_red (x = 0, y = 16, width = 8, height = 16)...
-Cropping tree_tall_green (x = 8, y = 16, width = 8, height = 16)...
-Cropping tree_tall_blue (x = 16, y = 16, width = 8, height = 16)...
-Cropping flower_small_red (x = 24, y = 16, width = 8, height = 8)...
-Cropping flower_small_blue (x = 24, y = 24, width = 8, height = 8)...
-Cropping sign (x = 32, y = 16, width = 8, height = 8)...
+Cropping tree_large_red (x = 0, y = 0, width = 16, height = 16)
+Cropping tree_large_green (x = 16, y = 0, width = 16, height = 16)
+Cropping tree_large_blue (x = 32, y = 0, width = 16, height = 16)
+Cropping tree_tall_red (x = 0, y = 16, width = 8, height = 16)
+Cropping tree_tall_green (x = 8, y = 16, width = 8, height = 16)
+Cropping tree_tall_blue (x = 16, y = 16, width = 8, height = 16)
+Cropping flower_small_red (x = 24, y = 16, width = 8, height = 8)
+Cropping flower_small_blue (x = 24, y = 24, width = 8, height = 8)
+Cropping sign (x = 32, y = 16, width = 8, height = 8)
 
-Successfully cropped 9 tiles.
+Successfully cropped 9 tiles
 ```
 
 ```
